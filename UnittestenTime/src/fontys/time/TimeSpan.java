@@ -117,21 +117,24 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public ITimeSpan intersectionWith(ITimeSpan timeSpan) {
-
+        //Aangepast door Mario
+        //Het object bt is groter dan timeSpan. dan krijg je true 
+        //terug. Als de beide opjecten hetzelfde zijn of timeSpan groter is dan krijg je false.
+        //Dus zal dit veranderd moeten worden naar <
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
+        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
         }
-
-        if (et.compareTo(timeSpan.getEndTime()) < 0) {
+        //verandert naar >
+        if (et.compareTo(timeSpan.getEndTime()) > 0) {
             endtime = et;
         } else {
             endtime = timeSpan.getEndTime();
         }
-
-        if (begintime.compareTo(endtime) >= 0) {
+        //verandert naar <=   
+        if (begintime.compareTo(endtime) <= 0) {
             return null;
         }
 
