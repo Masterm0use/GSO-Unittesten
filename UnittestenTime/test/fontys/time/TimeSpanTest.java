@@ -209,7 +209,7 @@ public class TimeSpanTest {
 
         //Voor Null terug te krijgen
         ITime bt5 = new Time(2016, 1, 21, 1, 1);
-        ITime et5 = new Time(2016, 3, 1, 1, 1);
+        ITime et5 = new Time(1996, 3, 1, 1, 1);
         TimeSpan ts5 = new TimeSpan(bt5, et5);
         //Er is geen Union met ts5 omdat deze 20 jaar uit elkaar liggen.
         assertNull("Er komt geen Null terug", ts2.unionWith(ts5));
