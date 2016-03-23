@@ -5,10 +5,23 @@
  */
 package fontys.time;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Robin de Kort
  */
 public class Contact {
-    //Todo
+    
+    private String name;
+    private ArrayList appointments;
+    
+    public Contact(String name){
+        this.name = name;
+        appointments = new ArrayList();
+    }
+    
+    public String getName(){
+        return name;
+    }
 }
