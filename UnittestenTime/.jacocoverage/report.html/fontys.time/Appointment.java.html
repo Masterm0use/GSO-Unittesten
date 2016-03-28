@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Appointment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">fontys.time</a> &gt; <span class="el_source">Appointment.java</span></div><h1>Appointment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fontys.time;
+
+import fontys.time.Contact;
+import fontys.time.ITimeSpan;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+/**
+ *
+ * @author Mario Schipper
+ */
+public class Appointment {
+    
+    private String subject;
+    private ITimeSpan timeSpan;
+    private ArrayList&lt;Contact&gt; contacten; 
+    
+    /**
+     *
+     * @param subject Onderderwerp van de vergadering.
+     * @param timeSpan Begin- en eindtijd.
+     */
+<span class="fc" id="L28">    public Appointment(String subject, ITimeSpan timeSpan){</span>
+<span class="fc" id="L29">        this.subject = subject;</span>
+<span class="fc" id="L30">        this.timeSpan = timeSpan;</span>
+<span class="fc" id="L31">        contacten = new ArrayList&lt;Contact&gt;();</span>
+<span class="fc" id="L32">    }</span>
+    
+    /**
+     *
+     * @return Geeft het onderwerp terug.
+     */
+    public String getSubject(){
+<span class="fc" id="L39">        return subject;</span>
+    }
+    
+    /**
+     *
+     * @return Geeft de timeSpan terug van dit object.
+     */
+    public ITimeSpan getTimeSpan(){
+<span class="fc" id="L47">        return timeSpan;</span>
+    }
+    
+    /**
+     *
+     * @return Geeft een lijst terug van contacten als een iterator
+     */
+    public Iterator&lt;Contact&gt; invitees(){
+<span class="fc" id="L55">        return contacten.iterator();</span>
+    }
+    
+    /**
+     *
+     * @param con Contact wat er toegevoegd moet worden
+     * @return Als het contact bestaat en is gelukt zal er true terug komen.
+     */
+    public boolean addContact(Contact con) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (Contact contact : contacten) {</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (contact.getName().matches(con.getName())) {</span>
+<span class="fc" id="L66">                return false;</span>
+            }
+<span class="fc" id="L68">        }</span>
+<span class="fc" id="L69">        return contacten.add(con);</span>
+    }
+    
+    /**
+     *
+     * @param con Contact wat er verwijderd moet worden
+     */
+     public void removeContact(Contact con) {
+<span class="fc" id="L77">        contacten.remove(con);</span>
+<span class="fc" id="L78">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

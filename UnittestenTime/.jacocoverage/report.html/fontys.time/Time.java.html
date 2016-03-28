@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="nl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Time.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">fontys.time</a> &gt; <span class="el_source">Time.java</span></div><h1>Time.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Time.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">fontys.time</a> &gt; <span class="el_source">Time.java</span></div><h1>Time.java</h1><pre class="source lang-java linenums">/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -41,7 +41,7 @@ public class Time implements ITime {
 <span class="nc" id="L41">            throw new IllegalArgumentException(&quot;minutes must be within 0..59&quot;);</span>
         }
         
-<span class="fc" id="L44">        gc = new GregorianCalendar(y, m , d, h, min);</span>
+<span class="fc" id="L44">        gc = new GregorianCalendar(y, m-1, d, h, min);</span>
 <span class="fc" id="L45">    }</span>
 
 <span class="fc" id="L47">    Time(Time t) {</span>
@@ -50,10 +50,10 @@ public class Time implements ITime {
 
     @Override
     public DayInWeek getDayInWeek() {
-<span class="nc" id="L53">        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);</span>
-<span class="nc bnc" id="L54" title="All 8 branches missed.">        switch (day_of_week) {</span>
+<span class="fc" id="L53">        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);</span>
+<span class="pc bpc" id="L54" title="7 of 8 branches missed.">        switch (day_of_week) {</span>
             case GregorianCalendar.SUNDAY:
-<span class="nc" id="L56">                return DayInWeek.SUN;</span>
+<span class="fc" id="L56">                return DayInWeek.SUN;</span>
             case GregorianCalendar.MONDAY:
 <span class="nc" id="L58">                return DayInWeek.MON;</span>
             case GregorianCalendar.TUESDAY:
@@ -73,27 +73,27 @@ public class Time implements ITime {
 
     @Override
     public int getYear() {
-<span class="nc" id="L76">        return gc.get(GregorianCalendar.YEAR);</span>
+<span class="fc" id="L76">        return gc.get(GregorianCalendar.YEAR);</span>
     }
 
     @Override
     public int getMonth() {
-<span class="nc" id="L81">        return gc.get(GregorianCalendar.MONTH) + 1;</span>
+<span class="fc" id="L81">        return gc.get(GregorianCalendar.MONTH) + 1;</span>
     }
 
     @Override
     public int getDay() {
-<span class="nc" id="L86">        return gc.get(GregorianCalendar.DAY_OF_MONTH);</span>
+<span class="fc" id="L86">        return gc.get(GregorianCalendar.DAY_OF_MONTH);</span>
     }
 
     @Override
     public int getHours() {
-<span class="nc" id="L91">        return gc.get(GregorianCalendar.HOUR_OF_DAY);</span>
+<span class="fc" id="L91">        return gc.get(GregorianCalendar.HOUR_OF_DAY);</span>
     }
 
     @Override
     public int getMinutes() {
-<span class="nc" id="L96">        return gc.get(GregorianCalendar.MINUTE);</span>
+<span class="fc" id="L96">        return gc.get(GregorianCalendar.MINUTE);</span>
     }
 
     @Override
@@ -111,8 +111,8 @@ public class Time implements ITime {
 
     @Override
     public int difference(ITime time) {
-<span class="nc" id="L114">        Time t = (Time) time;</span>
-<span class="nc" id="L115">        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 600000);</span>
+<span class="fc" id="L114">        Time t = (Time) time;</span>
+<span class="fc" id="L115">        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

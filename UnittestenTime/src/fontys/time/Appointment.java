@@ -5,6 +5,8 @@
  */
 package fontys.time;
 
+import fontys.time.Contact;
+import fontys.time.ITimeSpan;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,7 +23,7 @@ public class Appointment {
     /**
      *
      * @param subject Onderderwerp van de vergadering.
-     * @param timeSpan Begin en starttijd.
+     * @param timeSpan Begin- en eindtijd.
      */
     public Appointment(String subject, ITimeSpan timeSpan){
         this.subject = subject;
