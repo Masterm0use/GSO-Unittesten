@@ -115,7 +115,7 @@ public class TimeSpan2Test {
     }
     
     @Test
-    public void testChangeLengthWith() throws IllegalArgumentException {
+    public void testChangeLengthWith() {
         /**
          * Het einde van de tijdspan zal verhoogd worden met het aantal: [minutes] min
          * @param minutes  minutes
@@ -125,13 +125,15 @@ public class TimeSpan2Test {
         time.changeLengthWith(20);
         //Eindtijden vergelijken
         assertEquals("Test of het verhoogd is", time.getEndTime().compareTo(test1), 0);
-
-        try {
-            time.changeLengthWith(-10);
-        }
-        catch (IllegalArgumentException ex) {
-            // Er mag geen negative getal uitkomen, Staat als exeption in de methode
-        }
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testChangeLengthWithNegative() {
+        /**
+         * Lengte van de 'timespan' proberen te veranderen met een negatief getal
+         * @param minutes  minutes
+         */
+        time.changeLengthWith(-10);
     }
     
     @Test
