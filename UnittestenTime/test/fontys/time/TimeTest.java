@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class TimeTest {
     
     public TimeTest() {
-    }
+            }
     
     @BeforeClass
     public static void setUpClass() {
@@ -38,17 +38,75 @@ public class TimeTest {
     @After
     public void tearDown() {
     }
+    
+    @Test (expected=IllegalArgumentException.class)
+    public void testTimeMonth() {
+        Time wrongMonth = new Time(2016, 13, 32, 24, 60);
+     }
+    
+    @Test (expected=IllegalArgumentException.class)
+    public void testTimeDay() {
+        Time wrongDay = new Time(2016, 12, 32, 24, 60);
+     }
+    
+    @Test (expected=IllegalArgumentException.class)
+    public void testTimeHours() {
+        Time wrongHours = new Time(2016, 12, 31, 24, 60);
+     }
+    
+    @Test (expected=IllegalArgumentException.class)
+    public void testTimeMin() {
+        Time wrongMin = new Time(2016, 12, 31, 18, 100);
+     }
 
-    /**
+    /**M
      * Test of getDayInWeek method, of class Time.
      */
     @Test
     public void testGetDayInWeek() {
+        //Zondag
         System.out.println("getDayInWeek");
         Time timeInstance = new Time(2016, 3, 20, 14, 46);
         DayInWeek expResult = DayInWeek.SUN;
         DayInWeek result = timeInstance.getDayInWeek();
         assertEquals(expResult, result);
+        
+        //Maandag
+        Time maInstance = new Time(2016, 3, 21, 14, 46);
+        DayInWeek maExpResult = DayInWeek.MON;
+        DayInWeek resultMa = maInstance.getDayInWeek();
+        assertEquals(maExpResult, resultMa);
+        
+        //Dinsdag
+        Time diInstance = new Time(2016, 3, 22, 14, 46);
+        DayInWeek diExpResult = DayInWeek.TUE;
+        DayInWeek resultDi = diInstance.getDayInWeek();
+        assertEquals(diExpResult, resultDi);
+        
+        //Woensdag
+        Time woInstance = new Time(2016, 3, 23, 14, 46);
+        DayInWeek woExpResult = DayInWeek.WED;
+        DayInWeek resultWo = woInstance.getDayInWeek();
+        assertEquals(woExpResult, resultWo);
+        
+        //Donderdag
+        Time doInstance = new Time(2016, 3, 24, 14, 46);
+        DayInWeek doExpResult = DayInWeek.THU;
+        DayInWeek resultDo = doInstance.getDayInWeek();
+        assertEquals(doExpResult, resultDo);
+        
+        //Vrijdag
+        Time vrInstance = new Time(2016, 3, 25, 14, 46);
+        DayInWeek vrExpResult = DayInWeek.FRI;
+        DayInWeek resultvr = vrInstance.getDayInWeek();
+        assertEquals(vrExpResult, resultvr);
+        
+        //Zaterdag
+        Time zaInstance = new Time(2016, 3, 26, 14, 46);
+        DayInWeek zaExpResult = DayInWeek.SAT;
+        DayInWeek resultza = zaInstance.getDayInWeek();
+        assertEquals(zaExpResult, resultza);
+        
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }

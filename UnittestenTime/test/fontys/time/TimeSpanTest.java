@@ -19,7 +19,7 @@ public class TimeSpanTest {
     
     private ITime It1;
     private ITime It2;
-    private TimeSpan time;
+    private TimeSpan timeSpan;
     
     
     public TimeSpanTest() {
@@ -34,7 +34,7 @@ public class TimeSpanTest {
         //Eind tijd
         It2 = new Time(1970, 2, 1, 1, 1);
         //Time Span
-        time = new TimeSpan(It1, It2);
+        timeSpan = new TimeSpan(It1, It2);
     }
     
     
@@ -54,7 +54,7 @@ public class TimeSpanTest {
         /**
          * @return Begin tijd van deze time span
          */
-        assertEquals("begin test", time.getBeginTime(), It1);
+        assertEquals("begin test", timeSpan.getBeginTime(), It1);
     }
     
     @Test
@@ -63,7 +63,7 @@ public class TimeSpanTest {
         /**
          * @return Het einde van deze time span
          */
-        assertEquals("eind test", time.getEndTime().compareTo(It2), 0);
+        assertEquals("eind test", timeSpan.getEndTime().compareTo(It2), 0);
     }
     
     @Test
@@ -74,7 +74,7 @@ public class TimeSpanTest {
          */
 
         setUp();
-        assertEquals("Test de lengte van de periode", time.length(), It2.difference(It1));
+        assertEquals("Test de lengte van de periode", timeSpan.length(), It2.difference(It1));
     }
 
     @Test
@@ -85,12 +85,12 @@ public class TimeSpanTest {
          */
 
         ITime bt2 = new Time(1955, 1, 1, 1, 0);
-        time.setBeginTime(bt2);
-        assertEquals("Begintijd is niet goed", time.getBeginTime().compareTo(bt2), 0);
+        timeSpan.setBeginTime(bt2);
+        assertEquals("Begintijd is niet goed", timeSpan.getBeginTime().compareTo(bt2), 0);
 
         ITime bt3 = new Time(2016,9,22,20,10);
         try {
-            time.setBeginTime(bt3);
+            timeSpan.setBeginTime(bt3);
         }
         catch (Exception ex) {
             //Begintijd > eindtijd
@@ -105,11 +105,11 @@ public class TimeSpanTest {
          */
 
         ITime et2 = new Time(2000, 1, 3, 4, 4);
-        time.setEndTime(et2);
-        assertEquals("Eindtijd is niet goed", time.getEndTime().compareTo(et2), 0);
+        timeSpan.setEndTime(et2);
+        assertEquals("Eindtijd is niet goed", timeSpan.getEndTime().compareTo(et2), 0);
         ITime fout = new Time(1953, 1, 12, 05, 25);
         try {
-            time.setEndTime(fout);
+            timeSpan.setEndTime(fout);
         }
         catch(IllegalArgumentException ex) {
         }
@@ -123,9 +123,9 @@ public class TimeSpanTest {
          */
         //Eindtijd +20
         ITime test1 = new Time(1955,2,1,1,21);
-        time.changeLengthWith(20);
+        timeSpan.changeLengthWith(20);
         //Eindtijden vergelijken
-        assertEquals("Test of het verhoogd is", time.getEndTime().compareTo(test1), 0);
+        assertEquals("Test of het verhoogd is", timeSpan.getEndTime().compareTo(test1), 0);
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -134,7 +134,7 @@ public class TimeSpanTest {
          * Lengte van de 'timespan' proberen te veranderen met een negatief getal
          * @param minutes  minutes
          */
-        time.changeLengthWith(-10);
+        timeSpan.changeLengthWith(-10);
     }
     
     @Test
@@ -144,7 +144,7 @@ public class TimeSpanTest {
          * @param minutes (a negative value is allowed)
          */
         //De minuten zal nu verhoogd worden naar 51 van 1 
-        time.move(50);
+        timeSpan.move(50);
         
         //Deze tijd is 50 minuten later dan It1
         ITime It3 = new Time(2000,1,1,1,51);
@@ -152,10 +152,10 @@ public class TimeSpanTest {
         TimeSpan time2 = new TimeSpan(It3, It4);
 
         //Begintijd testen
-        assertEquals("begintijd", time.getBeginTime().compareTo(time2.getBeginTime()), 0);
+        assertEquals("begintijd", timeSpan.getBeginTime().compareTo(time2.getBeginTime()), 0);
 
         //Eindtijd testen
-        assertEquals("Eindtijd", time.getEndTime().compareTo(time2.getEndTime()), 0);
+        assertEquals("Eindtijd", timeSpan.getEndTime().compareTo(time2.getEndTime()), 0);
     }
     
     @Test
@@ -170,19 +170,19 @@ public class TimeSpanTest {
         ITime bt2 = new Time(1970, 1, 1, 1, 2);
         ITime et2 = new Time(1970, 1, 1, 1, 5);
         TimeSpan test2 = new TimeSpan(bt2, et2);
-        assertTrue("test2 is deel van time", test2.isPartOf(time));
+        assertTrue("test2 is deel van time", test2.isPartOf(timeSpan));
 
         //Deze valt er niet helemaal in
         ITime bt3 = new Time(1994, 1, 1, 1, 2);
         ITime et3 = new Time(1994, 2, 1, 1, 5);
         TimeSpan test3 = new TimeSpan(bt3, et3);
-        assertFalse("test3 is geen deel van time", test3.isPartOf(time));
+        assertFalse("test3 is geen deel van time", test3.isPartOf(timeSpan));
 
         //Deze valt er helemaal niet in
         ITime bt4 = new Time(2000, 1, 1, 1, 2);
         ITime et4 = new Time(2000, 2, 1, 1, 5);
         TimeSpan test4 = new TimeSpan(bt4, et4);
-        assertFalse("test4 is geen deel van time", test4.isPartOf(time));
+        assertFalse("test4 is geen deel van time", test4.isPartOf(timeSpan));
     }
     
     @Test
@@ -197,17 +197,17 @@ public class TimeSpanTest {
         TimeSpan ts2 = new TimeSpan(bt2, et2);
 
         //Dit is de actie
-        TimeSpan test3 = (TimeSpan) time.unionWith(ts2);
+        TimeSpan test3 = (TimeSpan) timeSpan.unionWith(ts2);
         //Hetzelfde maar dan omgedraait, hier moet hetzelfde uitkomen.
-        TimeSpan test4 = (TimeSpan) ts2.unionWith(time);
+        TimeSpan test4 = (TimeSpan) ts2.unionWith(timeSpan);
 
         //Hier test je de begin en eindtijd van de eerste Unionwith (ts3)
-        assertEquals("De begintijd is niet gelijk aan time", test3.getBeginTime().compareTo(time.getBeginTime()), 0);
-        assertEquals("De eindtijd is niet gelijk aan time", test3.getEndTime().compareTo(time.getEndTime()), 0);
+        assertEquals("De begintijd is niet gelijk aan time", test3.getBeginTime().compareTo(timeSpan.getBeginTime()), 0);
+        assertEquals("De eindtijd is niet gelijk aan time", test3.getEndTime().compareTo(timeSpan.getEndTime()), 0);
 
         //Hier doe je precies hetzelfde als hierboven maar dan met ts4
-        assertEquals("De eindtijd is niet gelijk aan time", test4.getBeginTime().compareTo(time.getBeginTime()), 0);
-        assertEquals("De eindtijd is niet gelijk aan time", test4.getEndTime().compareTo(time.getEndTime()), 0);
+        assertEquals("De eindtijd is niet gelijk aan time", test4.getBeginTime().compareTo(timeSpan.getBeginTime()), 0);
+        assertEquals("De eindtijd is niet gelijk aan time", test4.getEndTime().compareTo(timeSpan.getEndTime()), 0);
 
         //Voor Null terug te krijgen
         ITime bt5 = new Time(2016, 1, 21, 1, 1);
@@ -229,7 +229,7 @@ public class TimeSpanTest {
         TimeSpan testsNull = new TimeSpan(btN, etN);
 
         //Geen intersertion vandaar null
-        assertNull("geen Null terug", testsNull.intersectionWith(time));
+        assertNull("geen Null terug", testsNull.intersectionWith(timeSpan));
 
         //Een goede Timespan
         ITime bt2 = new Time(1970, 1, 1, 1, 2);
@@ -240,14 +240,14 @@ public class TimeSpanTest {
         TimeSpan test4 = null;
 
         try {
-            test3 = (TimeSpan) time.intersectionWith(test2);
+            test3 = (TimeSpan) timeSpan.intersectionWith(test2);
         }
         catch (NullPointerException np) {
             System.out.println("Failed bij test3 aanmaken");
         }
 
         try {
-            test4 = (TimeSpan) test2.intersectionWith(time);
+            test4 = (TimeSpan) test2.intersectionWith(timeSpan);
         }
         catch (NullPointerException np) {
             System.out.println("Failed bij test4 aanmaken");

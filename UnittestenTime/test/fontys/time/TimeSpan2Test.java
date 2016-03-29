@@ -105,6 +105,7 @@ public class TimeSpan2Test {
 
         ITime et2 = new Time(2000, 1, 3, 4, 4);
         time.setEndTime(et2);
+        
         assertEquals("Eindtijd is niet goed", time.getEndTime().compareTo(et2), 0);
         ITime fout = new Time(1953, 1, 12, 05, 25);
         try {
@@ -193,12 +194,12 @@ public class TimeSpan2Test {
 
         ITime bt2 = new Time(1970, 1, 1, 1, 2);
         ITime et2 = new Time(1970, 1, 1, 1, 3);
-        TimeSpan2 ts2 = new TimeSpan2(bt2, et2);
+        TimeSpan ts2 = new TimeSpan(bt2, et2);
 
         //Dit is de actie
-        TimeSpan2 test3 = (TimeSpan2) time.unionWith(ts2);
+        TimeSpan test3 = (TimeSpan) time.unionWith(ts2);
         //Hetzelfde maar dan omgedraait, hier moet hetzelfde uitkomen.
-        TimeSpan2 test4 = (TimeSpan2) ts2.unionWith(time);
+        TimeSpan test4 = (TimeSpan) ts2.unionWith(time);
 
         //Hier test je de begin en eindtijd van de eerste Unionwith (ts3)
         assertEquals("De begintijd is niet gelijk aan time", test3.getBeginTime().compareTo(time.getBeginTime()), 0);
@@ -211,7 +212,7 @@ public class TimeSpan2Test {
         //Voor Null terug te krijgen
         ITime bt5 = new Time(2016, 1, 21, 1, 1);
         ITime et5 = new Time(1996, 3, 1, 1, 1);
-        TimeSpan2 ts5 = new TimeSpan2(bt5, et5);
+        TimeSpan ts5 = new TimeSpan(bt5, et5);
         //Er is geen Union met ts5 omdat deze 20 jaar uit elkaar liggen.
         assertNull("Er komt geen Null terug", ts2.unionWith(ts5));
     }
