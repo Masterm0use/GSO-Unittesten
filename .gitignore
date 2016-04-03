@@ -47,3 +47,5 @@ Temporary Items
 .apdisk
 /AEXBanner/nbproject/private/
 *.html
+/AEXBanner/build/
+/AEXBanner/dist/
