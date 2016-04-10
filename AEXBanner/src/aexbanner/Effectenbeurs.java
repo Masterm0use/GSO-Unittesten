@@ -5,18 +5,21 @@
  */
 package aexbanner;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Mastermouse
  */
-public class Effectenbeurs implements IEffectenbeurs{
+public class Effectenbeurs implements IEffectenbeurs, Serializable
+{
+    private ArrayList<IFonds> fondsen;
 
     @Override
-    public List<IFonds> getKoersen() {
-        return null;
-        
-    }
-    
+    public ArrayList<IFonds> getKoersen() {
+        return fondsen;
+    }   
 }

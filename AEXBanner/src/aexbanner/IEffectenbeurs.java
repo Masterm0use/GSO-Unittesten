@@ -5,6 +5,7 @@
  */
 package aexbanner;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -12,5 +13,5 @@ import java.util.List;
  * @author Mastermouse
  */
 public interface IEffectenbeurs {
-    List<IFonds> getKoersen();
+    public List<IFonds> getKoersen() throws RemoteException;;
 }

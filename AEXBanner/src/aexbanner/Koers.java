@@ -5,27 +5,35 @@
  */
 package aexbanner;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Mastermouse
  */
-public class Fonds implements IFonds {
-    
-    private String naam;
-    private double koers;
+public class Koers implements IFonds, Serializable{
+    String naam;
+    double koers;
 
-    public Fonds(String naam, double koers) {
+    Koers(String naam, double koers)
+    {
         this.naam = naam;
         this.koers = koers;
     }
-
+    
     @Override
     public String getNaam() {
-        return naam;
+        return this.naam;
+  
     }
 
     @Override
     public double getKoers() {
-        return koers;
+        return this.koers;
+    }
+    
+    @Override
+    public String toString(){
+        return naam + " : " + koers;
     }
 }
