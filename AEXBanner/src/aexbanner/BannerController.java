@@ -30,7 +30,7 @@ public class BannerController {
 			public void run() {
 				banner.setKoersen(effectenbeurs.toString());
 			}
-		}, 500);
+		}, 16);
 	}
 
 	// Stop banner controller
@@ -38,4 +38,16 @@ public class BannerController {
 		pollingTimer.cancel();
 		// Stop simulation timer of effectenbeurs
 	}
+
+    void setEffectenbeurs(IEffectenbeurs effectenbeurs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void addListener() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    IEffectenbeurs getEffectenbeurs() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
