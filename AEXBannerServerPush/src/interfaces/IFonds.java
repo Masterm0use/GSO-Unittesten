@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aexbanner;
+package interfaces;
 
 import java.io.Serializable;
 
 /**
  *
- * @author Mastermouse
+ * @author Mario, Robin
  */
-public interface IFonds extends Serializable {
-    
-     String getNaam();
-     double getKoers();
+public interface IFonds {
+
+	String getNaam();
+	double getKoers();
 }

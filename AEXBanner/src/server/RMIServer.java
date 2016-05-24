@@ -47,7 +47,11 @@ public class RMIServer {
         // Print port number for registry
         System.out.println("Server: Port number " + portNumber);
 
-        mockEffectenbeurs = new MockEffectenbeurs();
+		try {
+			mockEffectenbeurs = new MockEffectenbeurs();
+		} catch (RemoteException ex) {
+			Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
+		}
         System.out.println("Server: Beurs administration created");
 
         // Create registry at port number
@@ -61,6 +65,21 @@ public class RMIServer {
         }
         
         mockEffectenbeurs.setKoers("Test", 10);
+		
+		try {
+			System.out.println("Koersen: " + mockEffectenbeurs.getKoersen().size());
+		} catch (RemoteException ex) {
+			Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
+		}
+                
+        // Bind beurs administration using registry
+        try {
+            registry.rebind(bindingName, mockEffectenbeurs);
+			System.out.println("Server: Beurs administration bound");
+        } catch (RemoteException ex) {
+            System.out.println("Server: Cannot bind beurs administration");
+            System.out.println("Server: RemoteException: " + ex.getMessage());
+        }
         
         Timer timer = new Timer();
         
@@ -78,20 +97,10 @@ public class RMIServer {
             @Override
             public void run()
             {
-                try
-                {
-                    mockEffectenbeurs.setKoers("bedrijf1", mockEffectenbeurs.getRandomKoers());
-                } catch (RemoteException ex)
-                {
-                    Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                // Bind beurs administration using registry
                 try {
-                    registry.rebind(bindingName, mockEffectenbeurs);
+                    mockEffectenbeurs.setKoers("bedrijf1", mockEffectenbeurs.getRandomKoers());
                 } catch (RemoteException ex) {
-                    System.out.println("Server: Cannot bind beurs administration");
-                    System.out.println("Server: RemoteException: " + ex.getMessage());
+                    Logger.getLogger(RMIServer.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

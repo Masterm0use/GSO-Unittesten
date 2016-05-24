@@ -13,25 +13,28 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 import java.util.Timer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Mastermouse
  * Voorbeeld van fontys aangepast naar situatie
  */
-public class RMIClient {
+public class RMIClient extends UnicastRemoteObject {
 
     // Set binding name for student administration
     private static final String bindingName = "KoersAdmin";
 
     // References to registry and student administration
     private Registry registry = null;
-    private MockEffectenbeurs beurs = null;
+    private IEffectenbeurs beurs = null;
 
     // Constructor
-    public RMIClient(String ipAddress, int portNumber) {
+    public RMIClient(String ipAddress, int portNumber) throws RemoteException{
 
         // Print IP address and port number for registry
         System.out.println("Client: IP Address: " + ipAddress);
@@ -62,7 +65,7 @@ public class RMIClient {
         // Bind student administration using registry
         if (registry != null) {
             try {
-                beurs = (MockEffectenbeurs) registry.lookup(bindingName);
+                beurs = (IEffectenbeurs) registry.lookup(bindingName);
             } catch (RemoteException ex) {
                 System.out.println("Client: Cannot bind koers administration");
                 System.out.println("Client: RemoteException: " + ex.getMessage());
@@ -143,21 +146,19 @@ public class RMIClient {
             System.out.println("Client: RemoteException: " + ex.getMessage());
         }
 
-        // Get first student
+        // Get second student
         try {
             System.out.println("Client: second Koers: " + beurs.getKoersen().get(1));
         } catch (RemoteException ex) {
-            System.out.println("Client: Cannot get first Koers");
+            System.out.println("Client: Cannot get second Koers");
             System.out.println("Client: RemoteException: " + ex.getMessage());
         }
 
         // Get third student (does not exist)
         try {
-            try
-            {
+            try {
                 System.out.println("Client: third Koers: " + beurs.getKoersen().get(2));   
-            } catch (IndexOutOfBoundsException e)
-            {
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println("Client: third Koers does not exist");
             }
         } catch (RemoteException ex) {
@@ -182,8 +183,12 @@ public class RMIClient {
         System.out.print("Client: Enter port number: ");
         int portNumber = input.nextInt();
 
-        // Create client
-        RMIClient client = new RMIClient(ipAddress, portNumber);
+		try {
+			// Create client
+			RMIClient client = new RMIClient(ipAddress, portNumber);
+		} catch (RemoteException ex) {
+			Logger.getLogger(RMIClient.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 }
 
