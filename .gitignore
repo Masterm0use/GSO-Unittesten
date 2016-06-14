@@ -50,3 +50,7 @@ Temporary Items
 /AEXBanner/build/
 /AEXBanner/dist/
 *.zip
+/JavaFXBankieren/nbproject/private/
+/BankierenNoObserverFX/build/
+/BankierenNoObserverFX/dist/
+/BankierenNoObserverFX/nbproject/private/
