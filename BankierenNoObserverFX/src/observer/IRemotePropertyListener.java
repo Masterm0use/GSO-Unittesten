@@ -1,4 +1,4 @@
-package bank.bankieren;
+package observer;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.Remote;

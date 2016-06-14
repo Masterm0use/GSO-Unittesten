@@ -1,4 +1,4 @@
-package bank.bankieren;
+package observer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
