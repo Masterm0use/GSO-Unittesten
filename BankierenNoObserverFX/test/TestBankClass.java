@@ -93,6 +93,7 @@ public class TestBankClass {
         }
 
         @Test
+        public void TransferTestUnknownNumber() throws NumberDoesntExistException {
             exception.expect(NumberDoesntExistException.class);
 
             money = new Money(100000, Money.EURO);
