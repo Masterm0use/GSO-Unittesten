@@ -91,11 +91,11 @@ public class Rekening implements IRekeningTbvBank {
 
     @Override
     public void addListener(IRemotePropertyListener listener, String property) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.publisher.addListener(listener, property);
     }
 
     @Override
     public void removeListener(IRemotePropertyListener listener, String property) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.publisher.removeListener(listener, property);
     }
 }
