@@ -16,7 +16,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -49,13 +51,16 @@ public class TestIBankiersessie {
     @AfterClass
     public static void tearDownClass() {
     }
+    
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Before
     public void setUp() throws RemoteException {
         internalBank = new Bank("TestBank");
         bank = internalBank;
-        klant1 = new Klant("John Doe", "Awesometown");
-        klant2 = new Klant("Jane Doe", "Boringtown");
+        klant1 = new Klant("John Cena", "RektCity");
+        klant2 = new Klant("Lala", "TeletubiesSecretCity");
         testRek1 = bank.openRekening(klant1.getNaam(), klant1.getPlaats());
         testRek2 = bank.openRekening(klant1.getNaam(), klant1.getPlaats());
         bankiersessie = new Bankiersessie(testRek1, bank);
@@ -105,6 +110,7 @@ public class TestIBankiersessie {
 
     @Test
     public void TransferTestIllegal() throws InvalidSessionException, NumberDoesntExistException, RemoteException {
+        exception.expect(RuntimeException.class);
         money = new Money(-100, Money.EURO);
 
         boolean success = bankiersessie.maakOver(testRek2, money);
@@ -116,6 +122,6 @@ public class TestIBankiersessie {
     public void GetRekeningTest() throws InvalidSessionException, RemoteException {
         IRekening testRekening = bankiersessie.getRekening();
 
-        assertEquals("Accounts didnt match", testRekening, testRek1);
+        assertEquals("Accounts didnt match", testRekening.getNr(), testRek1);
     }
 }

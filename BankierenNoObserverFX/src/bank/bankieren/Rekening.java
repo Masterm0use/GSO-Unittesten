@@ -1,5 +1,9 @@
 package bank.bankieren;
 
+import java.rmi.RemoteException;
+import observer.BasicPublisher;
+import observer.IRemotePropertyListener;
+
 public class Rekening implements IRekeningTbvBank {
 
     private static final long serialVersionUID = 7221569686169173632L;
@@ -8,10 +12,13 @@ public class Rekening implements IRekeningTbvBank {
     private IKlant eigenaar;
     private Money saldo;
 
+    private transient BasicPublisher publisher;
+
     /**
      * creatie van een bankrekening met saldo van 0.0<br>
-     * de constructor heeft package-access omdat de PersistentAccount-objecten door een
-     * het PersistentBank-object worden beheerd
+     * de constructor heeft package-access omdat de PersistentAccount-objecten
+     * door een het PersistentBank-object worden beheerd
+     *
      * @see banking.persistence.PersistentBank
      * @param number het bankrekeningnummer
      * @param klant de eigenaar van deze rekening
@@ -23,8 +30,9 @@ public class Rekening implements IRekeningTbvBank {
 
     /**
      * creatie van een bankrekening met saldo saldo<br>
-     * de constructor heeft package-access omdat de PersistentAccount-objecten door een
-     * het PersistentBank-object worden beheerd
+     * de constructor heeft package-access omdat de PersistentAccount-objecten
+     * door een het PersistentBank-object worden beheerd
+     *
      * @see banking.persistence.PersistentBank
      * @param number het bankrekeningnummer
      * @param name de naam van de eigenaar
@@ -35,6 +43,7 @@ public class Rekening implements IRekeningTbvBank {
         this.nr = number;
         this.eigenaar = klant;
         this.saldo = saldo;
+        this.publisher = new BasicPublisher(new String[]{"saldo"});
     }
 
     public boolean equals(Object obj) {
@@ -67,7 +76,9 @@ public class Rekening implements IRekeningTbvBank {
         }
 
         if (isTransferPossible(bedrag)) {
+            Money previousBalance = saldo;
             saldo = Money.sum(saldo, bedrag);
+            publisher.inform(this, "saldo", previousBalance, saldo);
             return true;
         }
         return false;
@@ -76,5 +87,15 @@ public class Rekening implements IRekeningTbvBank {
     @Override
     public int getKredietLimietInCenten() {
         return KREDIETLIMIET;
+    }
+
+    @Override
+    public void addListener(IRemotePropertyListener listener, String property) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeListener(IRemotePropertyListener listener, String property) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
