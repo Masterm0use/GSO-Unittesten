@@ -1,4 +1,4 @@
-package bank.internettoegang;
+package internettoegang;
 
 
 public interface ILoginAccount {

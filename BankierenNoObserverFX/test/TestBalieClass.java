@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 
-import bank.bankieren.Bank;
-import bank.bankieren.IBank;
-import bank.internettoegang.Balie;
-import bank.internettoegang.IBalie;
+import bankieren.Bank;
+import bankieren.IBank;
+import centrale.Centrale;
+import centrale.ICentrale;
+import internettoegang.Balie;
+import internettoegang.IBalie;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Robin de Kort
+ * @author Mastermouse
  */
 public class TestBalieClass {
     
@@ -37,9 +40,10 @@ public class TestBalieClass {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
+        ICentrale centrale = new Centrale();
         try {
-            bank = new Bank("Test Rabobank");
+            bank = new Bank("Test bank", centrale);
             balie = new Balie(bank);
         } catch (Exception ex) {
             
@@ -86,4 +90,3 @@ public class TestBalieClass {
             assertNull("Account was created with no name", result);
     }
 }
-    

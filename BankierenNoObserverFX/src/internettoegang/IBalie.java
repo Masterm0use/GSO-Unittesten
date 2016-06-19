@@ -1,4 +1,4 @@
-package bank.internettoegang;
+package internettoegang;
 
 import java.rmi.*;
 

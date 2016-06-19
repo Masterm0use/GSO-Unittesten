@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bank.gui;
+package gui;
 
-import bank.internettoegang.IBalie;
+import internettoegang.IBalie;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;

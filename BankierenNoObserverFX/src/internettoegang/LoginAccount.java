@@ -1,4 +1,4 @@
-package bank.internettoegang;
+package internettoegang;
 
 
 public class LoginAccount implements ILoginAccount {

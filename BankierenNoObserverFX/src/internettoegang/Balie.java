@@ -1,9 +1,9 @@
-package bank.internettoegang;
+package internettoegang;
 
+import bankieren.IBank;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
-import bank.bankieren.*;
 
 public class Balie extends UnicastRemoteObject implements IBalie {
 
@@ -28,8 +28,13 @@ public class Balie extends UnicastRemoteObject implements IBalie {
 
 		if (wachtwoord.length() < 4 || wachtwoord.length() > 8)
 			return null;
-
-		int nr = bank.openRekening(naam, plaats);
+                int nr = -1;
+                try {
+                    nr = bank.openRekening(naam, plaats);
+                }
+                catch(RemoteException ex) {
+                    
+                }
 		if (nr == -1)
 			return null;
 

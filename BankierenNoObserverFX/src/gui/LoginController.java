@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bank.gui;
+package gui;
 
-import bank.bankieren.IRekening;
-import bank.internettoegang.IBalie;
-import bank.internettoegang.IBankiersessie;
+import bankieren.IRekening;
+import internettoegang.IBalie;
+import internettoegang.IBankiersessie;
 import fontys.util.InvalidSessionException;
 import java.net.URL;
 import java.rmi.RemoteException;

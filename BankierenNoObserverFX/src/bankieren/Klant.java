@@ -1,10 +1,7 @@
-package bank.bankieren;
+package bankieren;
 
 public class Klant implements IKlant {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6216851042931199453L;
 
 	private String naam;

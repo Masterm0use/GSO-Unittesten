@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 
 /**
  *
- * @author Mastermouse
+ * @author Robin de Kort
  */
 public interface IRemotePublisher extends Remote {
     

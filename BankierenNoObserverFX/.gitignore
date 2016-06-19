@@ -45,13 +45,5 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-/AEXBanner/nbproject/private/
-*.html
-/AEXBanner/build/
-/AEXBanner/dist/
-*.zip
-/JavaFXBankieren/nbproject/private/
-/BankierenNoObserverFX/build/
-/BankierenNoObserverFX/dist/
-/BankierenNoObserverFX/nbproject/private/
-/JavaFXApplication15/nbproject/private/
+/build/
+/dist/

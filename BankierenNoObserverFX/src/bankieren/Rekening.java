@@ -1,38 +1,38 @@
-package bank.bankieren;
+package bankieren;
 
 import java.rmi.RemoteException;
 import observer.BasicPublisher;
 import observer.IRemotePropertyListener;
 
-public class Rekening implements IRekeningTbvBank {
+class Rekening implements IRekeningTbvBank {
 
     private static final long serialVersionUID = 7221569686169173632L;
     private static final int KREDIETLIMIET = -10000;
     private int nr;
     private IKlant eigenaar;
-    private Money saldo;
-
+    private Money saldo;  
     private transient BasicPublisher publisher;
-
+    
     /**
      * creatie van een bankrekening met saldo van 0.0<br>
-     * de constructor heeft package-access omdat de PersistentAccount-objecten
-     * door een het PersistentBank-object worden beheerd
-     *
+     * de constructor heeft package-access omdat de PersistentAccount-objecten door een
+     * het PersistentBank-object worden beheerd
      * @see banking.persistence.PersistentBank
      * @param number het bankrekeningnummer
      * @param klant de eigenaar van deze rekening
      * @param currency de munteenheid waarin het saldo is uitgedrukt
      */
     Rekening(int number, IKlant klant, String currency) {
-        this(number, klant, new Money(0, currency));
+        this.nr = number;
+        this.eigenaar = klant;
+        this.saldo = new Money(0, currency);
+        this.publisher = new BasicPublisher(new String[]{"saldo"});
     }
 
     /**
      * creatie van een bankrekening met saldo saldo<br>
-     * de constructor heeft package-access omdat de PersistentAccount-objecten
-     * door een het PersistentBank-object worden beheerd
-     *
+     * de constructor heeft package-access omdat de PersistentAccount-objecten door een
+     * het PersistentBank-object worden beheerd
      * @see banking.persistence.PersistentBank
      * @param number het bankrekeningnummer
      * @param name de naam van de eigenaar
@@ -43,7 +43,6 @@ public class Rekening implements IRekeningTbvBank {
         this.nr = number;
         this.eigenaar = klant;
         this.saldo = saldo;
-        this.publisher = new BasicPublisher(new String[]{"saldo"});
     }
 
     public boolean equals(Object obj) {

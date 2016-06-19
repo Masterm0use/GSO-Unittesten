@@ -7,7 +7,7 @@ import java.util.EventListener;
 
 /**
  *
- * @author Mastermouse
+ * @author Robin de Kort
  */
 public interface IRemotePropertyListener extends EventListener, Remote {
     

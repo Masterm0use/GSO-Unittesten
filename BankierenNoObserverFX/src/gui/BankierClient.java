@@ -1,22 +1,17 @@
-
-
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-package bank.gui;
+package gui;
 
-import bank.gui.BankSelectController;
-import bank.gui.BankierSessieController;
-import bank.gui.LoginController;
-import bank.gui.OpenRekeningController;
-import bank.internettoegang.IBalie;
-import bank.internettoegang.IBankiersessie;
+import gui.BankSelectController;
+import gui.BankierSessieController;
+import gui.LoginController;
+import gui.OpenRekeningController;
+import internettoegang.IBalie;
+import internettoegang.IBankiersessie;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
