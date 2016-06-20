@@ -101,7 +101,7 @@ public class BalieServer extends Application {
                 registry.rebind(nameBank, balie);
                 
                 //Maybe commente
-                Naming.rebind(nameBank, balie);
+//                Naming.rebind(nameBank, balie);
                
                 return true;
 
