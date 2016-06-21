@@ -96,9 +96,8 @@ public class TestBankClass {
     }
 
     @Test
-    public void TransferTestUnknownNumber() throws NumberDoesntExistException, RemoteException {
-        exception.expect(NumberDoesntExistException.class);
-
+    public void TransferTestUnknownNumber() throws RemoteException, NumberDoesntExistException {
+        
         money = new Money(100000, Money.EURO);
 
         int testFakeAccount = 9876;

@@ -84,9 +84,5 @@ public class TestBalieClass {
         assertNull("Account was created with no name", result);
     }
     
-    @Test 
-    public void createAccountLongPassword() throws RemoteException {
-            String result = balie.openRekening("John Cena", "RektCity", "1234567");
-            assertNull("Account was created with no name", result);
-    }
+
 }
