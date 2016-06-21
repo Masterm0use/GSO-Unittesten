@@ -21,6 +21,7 @@ import java.rmi.RemoteException;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -83,7 +84,7 @@ public class TestBankSessie {
     public void TransferTestTooMuch() throws InvalidSessionException, NumberDoesntExistException, RemoteException {
         money = new Money(1000000000, Money.EURO);
         
-        boolean success = bankiersessie.maakOver("TestBank", rek1, money);
+        boolean success = bankiersessie.maakOver("TestBank", rek2, money);
 
         assertEquals("Transfer above limit succeeded", false, success);
     }
@@ -114,7 +115,7 @@ public class TestBankSessie {
         assertEquals("Accounts didn't match", testRekening.getNr(), rek1);
     }
     
-     /*
+     
     @Test
     public void isGeldigExpiredTest() throws RemoteException{
         try{
@@ -127,5 +128,5 @@ public class TestBankSessie {
             assertTrue("Unexpected Exception", false);
         }
     }
-    */
+    
 }
